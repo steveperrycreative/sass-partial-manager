@@ -1,0 +1,13 @@
+#! /usr/bin/env php
+
+<?php
+
+use Symfony\Component\Console\Application;
+
+require 'vendor/autoload.php';
+
+$app = new Application('Sass Partial Manager', '1.0.0');
+
+$app->add(new Spc\MakePartialCommand());
+
+$app->run();
