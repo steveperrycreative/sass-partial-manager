@@ -19,7 +19,7 @@ class MakePartialCommand extends PartialCommand
     {
         $this->setName('make:partial')
              ->setDescription('Creates a new Sass partial and adds the import to the given stylesheet')
-             ->setHelp('Set up an spc_config array in your composer.json file with sass_directory (defaults to "scss") and stylesheet_filename (defaults to "styles.scss") data.')
+             ->setHelp('Set up an spm_config array in your composer.json file with sass_directory (defaults to "scss") and stylesheet_filename (defaults to "styles.scss") data.')
              ->addArgument('name', InputArgument::REQUIRED, 'The name for the partial, prefixes with an underscore.')
              ->addOption('type', null, InputOPTION::VALUE_OPTIONAL, 'Set a sub-folder for the partial.', 'components')
              ->addOption('sass_directory', null, InputOPTION::VALUE_OPTIONAL, 'Set the Sass directory.', $this->getSassDirectory());

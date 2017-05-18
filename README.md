@@ -22,7 +22,7 @@ The spm commands will now be available in your current working directory.
 Add some details to your `composer.json` file as follows:
 
 ```
-"spc_config": {
+"spm_config": {
   "sass_directory": "wp-content/themes/themename/scss",
   "stylesheet_filename": "styles.scss"
 }
@@ -40,7 +40,7 @@ It's early days so the structure of the partial directories is a bit opinionated
 The following example assumes that you are using WordPress with a theme called `spc`:
 
 ```
-"spc_config": {
+"spm_config": {
   "sass_directory": "wp-content/themes/spc/scss",
   "stylesheet_filename": "styles.scss"
 }

@@ -14,9 +14,9 @@ class PartialCommand extends Command
      */
     protected function getSassDirectory()
     {
-        $spc_config = $this->getConfigJson();
+        $spmConfig = $this->getConfigJson();
 
-        if ($sassDirectory = $spc_config['sass_directory']) {
+        if ($sassDirectory = $spmConfig['sass_directory']) {
             return $sassDirectory;
         }
 
@@ -30,9 +30,9 @@ class PartialCommand extends Command
      */
     protected function getStylesheetFilename()
     {
-        $spc_config = $this->getConfigJson();
+        $spmConfig = $this->getConfigJson();
 
-        return ($spc_config['stylesheet_filename']) ? $spc_config['stylesheet_filename'] : 'styles.scss';
+        return ($spmConfig['stylesheet_filename']) ? $spmConfig['stylesheet_filename'] : 'styles.scss';
     }
 
     /**
@@ -44,10 +44,10 @@ class PartialCommand extends Command
     {
         $composerJson = json_decode(file_get_contents('composer.json'), true);
 
-        if ($config = $composerJson['spc_config']) {
-            return $composerJson['spc_config'];
+        if ($spmConfig = $composerJson['spm_config']) {
+            return $composerJson['spm_config'];
         }
 
-        throw new RuntimeException('Please set up spc_config in the composer.json file.');
+        throw new RuntimeException('Please set up spm_config in the composer.json file.');
     }
 }
