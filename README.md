@@ -5,6 +5,20 @@ I got fed up of manually creating Sass partials and wondering why my styles were
 
 ## Getting Started
 
+First, download the SPM installer using Composer:
+
+`composer global require steveperrycreative/sass-partial-manager`
+
+Then add the ~/.composer/vendor/bin directory to your $PATH so that the spm executable can be located by your system.
+
+The easiest way to do this is with the export command:
+
+`export PATH=$PATH:~/.composer/vendor/bin`
+
+The spm commands will now be available in your current working directory.
+
+## Config
+
 Add some details to your `composer.json` file as follows:
 
 ```
@@ -14,8 +28,8 @@ Add some details to your `composer.json` file as follows:
 }
 ```
 
-`sass_directory` is the full path to where you want your partials to be added
-`stylesheet_filename` is the name of your main Sass entry point file (defaults to styles.scss)
+- `sass_directory` is the full path to where you want your partials to be added (make sure these directories exist).
+- `stylesheet_filename` is the name of your main Sass entry point file (defaults to styles.scss).
 
 You can also override the stylesheet name on the command line.
 
@@ -32,7 +46,7 @@ The following example assumes that you are using WordPress with a theme called `
 }
 ```
 
-`php spm make:partial header` will create a new partial called `_header.scss` in a `components` folder:
+`spm make:partial header` will create a new partial called `_header.scss` in a `components` folder:
 
 `wp-content/themes/spc/scss/components/_header.scss`
 
@@ -44,7 +58,7 @@ If your styles file doesn't exist then it will be created. If it already exists 
 
 ## Specifying A Component Type
 
-`php spm make:partial homepage --type="views"` will create a new partial called `_homepage.scss` in a `views` folder:
+`spm make:partial homepage --type="views"` will create a new partial called `_homepage.scss` in a `views` folder:
 
 `wp-content/themes/spc/scss/views/_homepage.scss`
 
@@ -56,4 +70,4 @@ And add `@import "views/homepage";` into your configured styles file:
 
 You can specify a one-off `sass_directory` path when creating a partial:
 
-`php spm make:partial homepage --type="views" --sass_directory="some/other/location"` will create your partial in the specified location. This will also look for the styles file in that location.
+`spm make:partial homepage --type="views" --sass_directory="some/other/location"` will create your partial in the specified location. This will also look for the styles file in that location.
