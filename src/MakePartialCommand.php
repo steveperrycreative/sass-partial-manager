@@ -40,9 +40,7 @@ class MakePartialCommand extends PartialCommand
         $partialName = $input->getArgument('name');
         $type = $input->getOption('type');
         $sassDirectory = getcwd() . DIRECTORY_SEPARATOR . $input->getOption('sass_directory');
-
         $partialDirectory = $sassDirectory . DIRECTORY_SEPARATOR . $type;
-
         $filename = '_' . $partialName . '.scss';
 
         if (!$this->directoryExists($partialDirectory)) {
@@ -52,32 +50,38 @@ class MakePartialCommand extends PartialCommand
         $this->verifyPartialDoesNotExist($partialDirectory, $filename);
 
         $partialPathAndFilename = $partialDirectory . DIRECTORY_SEPARATOR . $filename;
-
         $file = fopen($partialPathAndFilename, 'w') or die('Unable to open file: ' . $partialPathAndFilename);
         fclose($file);
 
         $output->writeln('<info>Partial created!</info>');
-        $output->writeln('<comment>Adding @import...</comment>');
 
-        $this->addImportToStylesheet($sassDirectory, $type, $partialName);
+        $stylesheet = $sassDirectory . DIRECTORY_SEPARATOR . $this->getStylesheetFilename();
 
-        $output->writeln('<info>Import added!</info>');
+        $this->addImportToStylesheet($output, $stylesheet, $type, $partialName);
+
+        // TODO: add option in composer.json for optional sorting
+        $this->sortPartialsInStylesheet($output, $stylesheet);
     }
 
     /**
      * Adds the import to the stylesheet.
      *
-     * @param $sassDirectory
-     * @param $type
-     * @param $partialName
+     * @param OutputInterface $output
+     * @param                $stylesheet
+     * @param                $type
+     * @param                $partialName
      */
-    private function addImportToStylesheet($sassDirectory, $type, $partialName)
+    private function addImportToStylesheet(OutputInterface $output, $stylesheet, $type, $partialName)
     {
-        $sassDirectoryAndFilename = $sassDirectory . DIRECTORY_SEPARATOR . $this->getStylesheetFilename();
+        $output->writeln('<comment>Adding @import to stylesheet...</comment>');
 
-        $file = fopen($sassDirectoryAndFilename, 'a') or die('Unable to open file: ' . $sassDirectoryAndFilename);
+        $file = fopen($stylesheet, 'a') or die('Unable to open file: ' . $stylesheet);
+
         fwrite($file, '@import "' . $type . DIRECTORY_SEPARATOR . $partialName . '";' . "\n");
+
         fclose($file);
+
+        $output->writeln('<info>Import added to stylesheet!</info>');
     }
 
     /**

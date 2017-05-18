@@ -1,7 +1,11 @@
 {
   "name": "steveperrycreative/sass-partial-manager",
   "description": "A quick way to manage Sass partials.",
-  "keywords": ["Sass","CSS","Partials"],
+  "keywords": [
+    "Sass",
+    "CSS",
+    "Partials"
+  ],
   "license": "MIT",
   "authors": [
     {
@@ -19,5 +23,9 @@
   },
   "bin": [
     "spm"
-  ]
+  ],
+  "spm_config": {
+    "sass_directory": "scss",
+    "stylesheet_name": "styles.scss"
+  }
 }

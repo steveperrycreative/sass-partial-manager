@@ -4,6 +4,7 @@ namespace Spc;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class PartialCommand extends Command
 {
@@ -49,5 +50,24 @@ class PartialCommand extends Command
         }
 
         throw new RuntimeException('Please set up spm_config in the composer.json file.');
+    }
+
+    protected function sortPartialsInStylesheet(OutputInterface $output, $stylesheet)
+    {
+        $output->writeln('<comment>Sorting partials...</comment>');
+
+        $lines = file($stylesheet);
+
+        sort($lines);
+
+        $file = fopen($stylesheet, 'w') or die('Unable to open file: ' . $stylesheet);
+
+        foreach ($lines as $line) {
+            fwrite($file, $line);
+        }
+
+        fclose($file);
+
+        $output->writeln('<info>Partials sorted!</info>');
     }
 }
