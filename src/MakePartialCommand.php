@@ -39,7 +39,7 @@ class MakePartialCommand extends PartialCommand
 
         $partialName = $input->getArgument('name');
         $type = $input->getOption('type');
-        $sassDirectory = $input->getOption('sass_directory');
+        $sassDirectory = getcwd() . DIRECTORY_SEPARATOR . $input->getOption('sass_directory');
 
         $partialDirectory = $sassDirectory . DIRECTORY_SEPARATOR . $type;
 
@@ -51,7 +51,9 @@ class MakePartialCommand extends PartialCommand
 
         $this->verifyPartialDoesNotExist($partialDirectory, $filename);
 
-        $file = fopen($partialDirectory . DIRECTORY_SEPARATOR . $filename, 'w') or die("Unable to open file!");
+        $partialPathAndFilename = $partialDirectory . DIRECTORY_SEPARATOR . $filename;
+
+        $file = fopen($partialPathAndFilename, 'w') or die('Unable to open file: ' . $partialPathAndFilename);
         fclose($file);
 
         $output->writeln('<info>Partial created!</info>');
@@ -71,7 +73,9 @@ class MakePartialCommand extends PartialCommand
      */
     private function addImportToStylesheet($sassDirectory, $type, $partialName)
     {
-        $file = fopen($sassDirectory . DIRECTORY_SEPARATOR . $this->getStylesheetFilename(), 'a') or die("Unable to open file!");
+        $sassDirectoryAndFilename = $sassDirectory . DIRECTORY_SEPARATOR . $this->getStylesheetFilename();
+
+        $file = fopen($sassDirectoryAndFilename, 'a') or die('Unable to open file: ' . $sassDirectoryAndFilename);
         fwrite($file, '@import "' . $type . DIRECTORY_SEPARATOR . $partialName . '";' . "\n");
         fclose($file);
     }

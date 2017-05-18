@@ -32,7 +32,7 @@ class PartialCommand extends Command
     {
         $spc_config = $this->getConfigJson();
 
-        return ($spc_config['stylesheet_filename']) ?: 'styles.scss';
+        return ($spc_config['stylesheet_filename']) ? $spc_config['stylesheet_filename'] : 'styles.scss';
     }
 
     /**
