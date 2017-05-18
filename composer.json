@@ -1,5 +1,5 @@
 {
-  "name": "spc/sass-partial-manager",
+  "name": "steveperrycreative/sass-partial-manager",
   "description": "A quick way to manage Sass partials.",
   "keywords": ["Sass","CSS","Partials"],
   "license": "MIT",
@@ -16,9 +16,5 @@
     "psr-4": {
       "Spc\\": "src"
     }
-  },
-  "spc_config": {
-    "sass_directory": "wp-content/themes/themename/scss",
-    "stylesheet_filename": "styles.scss"
   }
 }
