@@ -55,12 +55,13 @@ class MakePartialCommand extends PartialCommand
 
         $output->writeln('<info>Partial created!</info>');
 
-        $stylesheet = $sassDirectory . DIRECTORY_SEPARATOR . $this->getStylesheetFilename();
+        $stylesheet = $sassDirectory . DIRECTORY_SEPARATOR . $this->getStylesheetFilenameConfig();
 
         $this->addImportToStylesheet($output, $stylesheet, $type, $partialName);
 
-        // TODO: add option in composer.json for optional sorting
-        $this->sortPartialsInStylesheet($output, $stylesheet);
+        if ($this->getSortPartialsConfig()) {
+            $this->sortPartialsInStylesheet($output, $stylesheet);
+        }
     }
 
     /**

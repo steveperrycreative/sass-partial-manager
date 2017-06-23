@@ -26,6 +26,7 @@
   ],
   "spm_config": {
     "sass_directory": "scss",
-    "stylesheet_name": "styles.scss"
+    "stylesheet_name": "styles.scss",
+    "sort_imports": true
   }
 }
