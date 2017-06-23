@@ -24,12 +24,14 @@ Add some details to your `composer.json` file as follows:
 ```
 "spm_config": {
   "sass_directory": "wp-content/themes/themename/scss",
-  "stylesheet_filename": "styles.scss"
+  "stylesheet_filename": "styles.scss",
+  "sort_imports": true
 }
 ```
 
 - `sass_directory` is the full path to where you want your partials to be added (make sure these directories exist).
 - `stylesheet_filename` is the name of your main Sass entry point file (defaults to styles.scss).
+- `sort_imports` when set to true this sorts all imports alphabetically. Most users probably won't want this as it can cause cascading issues with styles so it defaults to `false`.
 
 You can also override the stylesheet name on the command line.
 
