@@ -1,5 +1,10 @@
 # Change Log
 
+## v1.0.6 23/06/2017
+
+- Added option to sort imports alphabetically.
+- Minor refactor.
+
 ## v1.0.5 18/05/2017
 
 - Changed composer.json spc_config keyword to spm_config.
